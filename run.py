@@ -25,7 +25,7 @@ async def home(request: Request):
 
     return templates.TemplateResponse("ryan_abbott_portfolio/index.html", {"request": request})
 
-@app.get("/sports")
+@app.get("/sports/mlb")
 async def mlb(request: Request):
     query = '''
     WITH LatestStandings AS (
@@ -56,6 +56,106 @@ async def mlb(request: Request):
 
     print(df)
     return templates.TemplateResponse("ryan_abbott_portfolio/mlb.html", {"request": request, "team_data": df.to_dict('records')})
+
+@app.get("/sports/nba")
+async def nba(request: Request):
+    query = '''
+    SELECT TOP (1000) [LeagueID]
+      ,[SeasonID]
+      ,[TeamID]
+      ,[TeamCity]
+      ,[TeamName]
+      ,[Conference]
+      ,[ConferenceRecord]
+      ,[PlayoffRank]
+      ,[ClinchIndicator]
+      ,[Division]
+      ,[DivisionRecord]
+      ,[DivisionRank]
+      ,[WINS]
+      ,[LOSSES]
+      ,[WinPCT]
+      ,[LeagueRank]
+      ,[Record]
+      ,[HOME]
+      ,[ROAD]
+      ,[L10]
+      ,[Last10Home]
+      ,[Last10Road]
+      ,[OT]
+      ,[ThreePTSOrLess]
+      ,[TenPTSOrMore]
+      ,[LongHomeStreak]
+      ,[strLongHomeStreak]
+      ,[LongRoadStreak]
+      ,[strLongRoadStreak]
+      ,[LongWinStreak]
+      ,[LongLossStreak]
+      ,[CurrentHomeStreak]
+      ,[strCurrentHomeStreak]
+      ,[CurrentRoadStreak]
+      ,[strCurrentRoadStreak]
+      ,[CurrentStreak]
+      ,[strCurrentStreak]
+      ,[ConferenceGamesBack]
+      ,[DivisionGamesBack]
+      ,[ClinchedConferenceTitle]
+      ,[ClinchedDivisionTitle]
+      ,[ClinchedPlayoffBirth]
+      ,[EliminatedConference]
+      ,[EliminatedDivision]
+      ,[AheadAtHalf]
+      ,[BehindAtHalf]
+      ,[TiedAtHalf]
+      ,[AheadAtThird]
+      ,[BehindAtThird]
+      ,[TiedAtThird]
+      ,[Score100PTS]
+      ,[OppScore100PTS]
+      ,[OppOver500]
+      ,[LeadInFGPCT]
+      ,[LeadInReb]
+      ,[FewerTurnovers]
+      ,[PointsPG]
+      ,[OppPointsPG]
+      ,[DiffPointsPG]
+      ,[vsEast]
+      ,[vsAtlantic]
+      ,[vsCentral]
+      ,[vsSoutheast]
+      ,[vsWest]
+      ,[vsNorthwest]
+      ,[vsPacific]
+      ,[vsSouthwest]
+      ,[Jan]
+      ,[Feb]
+      ,[Mar]
+      ,[Apr]
+      ,[May]
+      ,[Jun]
+      ,[Jul]
+      ,[Aug]
+      ,[Sep]
+      ,[Oct]
+      ,[Nov]
+      ,[Dec]
+      ,[PreAS]
+      ,[PostAS]
+      ,[season_end_year]
+      ,[season]
+    FROM [nba].[dbo].[team_stats]
+
+    ORDER BY winPCT DESC
+    '''
+
+    df = read_sql(query, database='nba')
+
+    print(df)
+    return templates.TemplateResponse("ryan_abbott_portfolio/nba.html", {"request": request, "team_data": df.to_dict('records')})
+
+
+
+    return
 
 if __name__ == '__main__':
     uvicorn.run(app, host="127.0.0.1", port=80)

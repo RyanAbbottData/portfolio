@@ -1,3 +1,6 @@
 [submodule "mlb-etl"]
 	path = mlb-etl
 	url = https://github.com/RyanAbbottData/mlb-etl.git
+[submodule "nba_etl"]
+	path = nba_etl
+	url = https://github.com/RyanAbbottData/nba_etl.git
