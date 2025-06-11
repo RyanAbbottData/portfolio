@@ -54,8 +54,51 @@ async def mlb(request: Request):
 
     df = read_sql(query, database='mlb')
 
+    query_hitting = '''
+    WITH LatestHitting AS (
+     SELECT MAX([time]) as latest_time
+     FROM [mlb].[dbo].[daily_hitting]
+    )
+    SELECT TOP (20) *
+    FROM [mlb].[dbo].[daily_hitting] ds
+    CROSS JOIN LatestHitting ls
+    WHERE ds.[time] = ls.latest_time
+    ORDER BY hits DESC
+    '''
+
+    df_hitting = read_sql(query_hitting, database='mlb')
+
+    # query_pitching = '''
+    #     WITH LatestHitting AS (
+    #     SELECT MAX([time]) as latest_time
+    #     FROM [mlb].[dbo].[daily_pitching]
+    # )
+    # SELECT TOP (20) *
+    # FROM [mlb].[dbo].[daily_pitching] ds
+    # CROSS JOIN LatestHitting ls
+    # WHERE ds.[time] = ls.latest_time
+    # ORDER BY era Asc
+    # '''
+
+    # df_pitching = read_sql(query_pitching, database='mlb')
+
+    # query_fielding = '''
+    #         WITH LatestFielding AS (
+    #     SELECT MAX([time]) as latest_time
+    #     FROM [mlb].[dbo].[daily_fielding]
+    # )
+    # SELECT TOP (20) *
+    # FROM [mlb].[dbo].[daily_fielding] ds
+    # CROSS JOIN LatestFielding ls
+    # WHERE ds.[time] = ls.latest_time
+    # ORDER BY era Asc
+    # '''
+
+    # df_fielding = read_sql(query_fielding, database='mlb')
+
     print(df)
-    return templates.TemplateResponse("ryan_abbott_portfolio/mlb.html", {"request": request, "team_data": df.to_dict('records')})
+    return templates.TemplateResponse("ryan_abbott_portfolio/mlb.html", {"request": request, "team_data": df.to_dict('records'), "hitting_data": df_hitting.to_dict('records')})#, "pitching_data": df_pitching.to_dict('records'), "fielding_data": df_fielding.to_dict('records')})
+
 
 @app.get("/sports/nba")
 async def nba(request: Request):
@@ -159,26 +202,5 @@ async def nba(request: Request):
 
 if __name__ == '__main__':
     uvicorn.run(app, host="127.0.0.1", port=80)
-#     # Load CSV data
-#     player_df = pd.read_csv("../data/current_player_predictions.csv").head(25)
-#     team_df = pd.read_csv("../data/current_team_predictions.csv")
 
-#     # Renaming and Filtering columns
-#     player_df = player_df.rename(columns={"rank_logistic": "rank"})
-#     team_df = team_df.rename(columns={"output_linear": "projected_win_pct"})
-#     print(team_df.columns)
-#     print(player_df.columns)
-#     team_df['projected_wins'] = team_df['projected_win_pct'] * 82
-
-#     player_display_cols = ["PLAYER_NAME", "rank", "PTS/G", "REB/G", "AST/G", "TOV/G", "STL/G", "BLK/G", "GP_PCT", "W_PCT", "last_updated"]
-#     team_display_cols = ["Team", "projected_win_pct", "projected_wins", "playoff_chance", "mean_percentile", "best_player", "last_updated"]
-
-
-
-#     # Convert DataFrame to a list of dictionaries
-#     player_data_filtered = player_df[player_display_cols].to_dict(orient="records")
-#     team_data_filtered = team_df[team_display_cols].to_dict(orient="records")
-
-#     # Render the data in the HTML template
-#     return templates.TemplateResponse("table.html", {"request": request, "player_data": player_data_filtered, "team_data": team_data_filtered})
 

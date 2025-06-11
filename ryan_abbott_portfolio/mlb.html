@@ -19,5 +19,26 @@
             {% endfor %}
         </tbody>
     </table>
+<h2>Batting Leaders</h2>
+    <table>
+        <thead>
+            <tr>
+                {% for column in hitting_data[0].keys() %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in hitting_data %}
+            <tr>
+                {% for value in row.values() %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<h2>Pitching Leaders</h2>
+<h2>Fielding Leaders</h2>
 </body>
 </html>
