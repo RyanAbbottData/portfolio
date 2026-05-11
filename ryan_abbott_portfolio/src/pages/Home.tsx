@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { LinkButton } from '../utils/links';
 
 const TITLES = ['AI/ML Engineer', 'Data Engineer', 'Software Engineer', 'ML Systems Builder'];
 
@@ -60,7 +61,7 @@ function Home() {
           Ryan Abbott
         </Link>
         <ul className="flex items-center gap-8 text-sm list-none m-0 p-0">
-          <li><Link to="/mlb" className="text-slate-400 hover:text-cyan-400 transition-colors">MLB Stats</Link></li>
+          {/*<li><Link to="/mlb" className="text-slate-400 hover:text-cyan-400 transition-colors">MLB Stats</Link></li>*/}
           <li><Link to="/about" className="text-slate-400 hover:text-cyan-400 transition-colors">About</Link></li>
           <li><span className="text-slate-600 cursor-default">Resume</span></li>
           <li>
@@ -104,34 +105,12 @@ function Home() {
             <TypewriterTitle />
           </h2>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up-delay">
-            Building production ML systems — from raw data ingestion to deployed models.
+            Building production AI and ML systems — from raw data ingestion to deployed models.
           </p>
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up-delay-2">
-            <a
-              href="https://github.com/RyanAbbottData"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-slate-600 text-slate-300 px-6 py-3 rounded-lg hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-200"
-            >
-              <i className="fa fa-github text-lg" />
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-slate-600 text-slate-300 px-6 py-3 rounded-lg hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-200"
-            >
-              <i className="fa fa-linkedin text-lg" />
-              LinkedIn
-            </a>
-            <Link
-              to="/rybot"
-              className="flex items-center gap-2 bg-cyan-500 text-slate-950 font-semibold px-6 py-3 rounded-lg hover:bg-cyan-400 transition-all duration-200"
-            >
-              Ask RyBot
-              <i className="fa fa-arrow-right text-sm" />
-            </Link>
+            <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fa-github" iconClassName="text-lg" label="GitHub" />
+            <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fa-linkedin" iconClassName="text-lg" label="LinkedIn" />
+            <LinkButton to="/rybot" icon="fa-arrow-right" iconClassName="text-sm" iconPosition="right" variant="primary" label="Ask RyBot" />
           </div>
         </div>
 
@@ -196,31 +175,9 @@ function Home() {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Let's build something great.</h2>
           <p className="text-slate-400 text-lg mb-10">Open to roles in AI/ML Engineering and Data Engineering.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://github.com/RyanAbbottData"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-slate-600 text-slate-300 px-6 py-3 rounded-lg hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-200"
-            >
-              <i className="fa fa-github" />
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-slate-600 text-slate-300 px-6 py-3 rounded-lg hover:border-cyan-500/50 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all duration-200"
-            >
-              <i className="fa fa-linkedin" />
-              LinkedIn
-            </a>
-            <a
-              href="mailto:ryanabbott855@gmail.com"
-              className="flex items-center gap-2 bg-cyan-500 text-slate-950 font-semibold px-6 py-3 rounded-lg hover:bg-cyan-400 transition-all duration-200"
-            >
-              <i className="fa fa-envelope" />
-              Email Me
-            </a>
+            <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fa-github" label="GitHub" />
+            <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fa-linkedin" label="LinkedIn" />
+            <LinkButton href="mailto:ryanabbott855@gmail.com" icon="fa-envelope" variant="primary" label="Email Me" />
           </div>
         </div>
       </section>
