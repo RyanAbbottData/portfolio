@@ -52,6 +52,14 @@ const STATS = [
 ];
 
 function Home() {
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    document.head.appendChild(link);
+    return () => { document.head.removeChild(link); };
+  }, []);
+
   return (
     <div className="bg-slate-950 min-h-screen text-slate-100">
 
@@ -108,15 +116,15 @@ function Home() {
             Building production AI and ML systems — from raw data ingestion to deployed models.
           </p>
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up-delay-2">
-            <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fa-github" iconClassName="text-lg" label="GitHub" />
-            <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fa-linkedin" iconClassName="text-lg" label="LinkedIn" />
-            <LinkButton to="/rybot" icon="fa-arrow-right" iconClassName="text-sm" iconPosition="right" variant="primary" label="Ask RyBot" />
+            <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fab fa-github" iconClassName="text-lg" label="GitHub" />
+            <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fab fa-linkedin" iconClassName="text-lg" label="LinkedIn" />
+            <LinkButton to="/rybot" icon="fas fa-arrow-right" iconClassName="text-sm" iconPosition="right" variant="primary" label="Ask RyBot" />
           </div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-600 animate-bounce">
           <span className="text-xs font-mono tracking-widest uppercase">scroll</span>
-          <i className="fa fa-chevron-down text-xs" />
+          <i className="fas fa-chevron-down text-xs" />
         </div>
       </section>
 
@@ -134,7 +142,7 @@ function Home() {
                 key={skill.name}
                 className={`${skill.bg} border ${skill.border} rounded-xl p-6 flex flex-col items-center text-center hover:scale-105 transition-all duration-200 cursor-default`}
               >
-                <i className={`fa ${skill.icon} ${skill.color} text-3xl mb-4`} />
+                <i className={`fas ${skill.icon} ${skill.color} text-3xl mb-4`} />
                 <h3 className="text-slate-100 font-semibold text-lg mb-1">{skill.name}</h3>
                 <p className="text-slate-500 text-xs">{skill.desc}</p>
               </div>
@@ -175,9 +183,9 @@ function Home() {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Let's build something great.</h2>
           <p className="text-slate-400 text-lg mb-10">Open to roles in AI/ML Engineering and Data Engineering.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fa-github" label="GitHub" />
-            <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fa-linkedin" label="LinkedIn" />
-            <LinkButton href="mailto:ryanabbott855@gmail.com" icon="fa-envelope" variant="primary" label="Email Me" />
+            <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fab fa-github" label="GitHub" />
+            <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fab fa-linkedin" label="LinkedIn" />
+            <LinkButton href="mailto:ryanabbott855@gmail.com" icon="fas fa-envelope" variant="primary" label="Email Me" />
           </div>
         </div>
       </section>

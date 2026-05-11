@@ -200,8 +200,7 @@ function AboutPage() {
                 key={card.heading}
                 className={`${card.bg} border ${card.border} rounded-xl p-6 flex flex-col hover:scale-105 transition-all duration-200 cursor-default`}
               >
-                <i className={`fa ${card.icon} ${card.color} text-3xl mb-4`} />
-                <h3 className="text-slate-100 font-semibold text-lg mb-2">{card.heading}</h3>
+<h3 className="text-slate-100 font-semibold text-lg mb-2">{card.heading}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{card.body}</p>
               </div>
             ))}

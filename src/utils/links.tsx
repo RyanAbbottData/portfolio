@@ -27,7 +27,7 @@ function LinkButton({
   ...rest
 }: LinkButtonProps) {
   const className = VARIANT_CLASS[variant];
-  const iconEl = <i className={`fa ${icon} ${iconClassName}`.trim()} />;
+  const iconEl = <i className={`${icon} ${iconClassName}`.trim()} />;
   const content = iconPosition === 'right'
     ? <>{label}{iconEl}</>
     : <>{iconEl}{label}</>;
