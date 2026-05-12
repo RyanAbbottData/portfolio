@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import MlbPage from './pages/MlbPage';
 import RybotPage from './pages/Rybot';
 import AboutPage from './pages/About';
+import ProjectsPage from './pages/Projects';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/mlb" element={<MlbPage />} />
         <Route path="/rybot" element={<RybotPage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
       </Routes>
     </BrowserRouter>
   );
