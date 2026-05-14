@@ -9,14 +9,14 @@ function SiteNavBar() {
             <ul className="flex items-center gap-8 text-sm list-none m-0 p-0">
                 <li><Link to="/about" className="text-cyan-400">About</Link></li>
                 <li><Link to="/projects" className="text-slate-400 hover:text-cyan-400 transition-colors">Projects</Link></li>
-                {/* <li><span className="text-slate-600 cursor-default">Resume</span></li> */}
+                <li><span className="text-slate-600 cursor-default">Resume</span></li>
                 <li>
-                {/* <Link
+                <Link
                     to="/rybot"
                     className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 px-4 py-1.5 rounded-full hover:bg-cyan-500/20 hover:border-cyan-500/60 transition-all"
                 >
                     Ask RyBot
-                </Link> */}
+                </Link>
                 </li>
             </ul>
         </nav>

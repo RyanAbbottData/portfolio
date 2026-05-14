@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect, KeyboardEvent } from 'react';
+import ReactMarkdown from 'react-markdown';
+import SiteNavBar from '../utils/navbar';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -19,7 +21,7 @@ function RybotPage() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
-  function sendMessage() {
+  async function sendMessage() {
     const text = input.trim();
     if (!text || loading) return;
 
@@ -28,13 +30,26 @@ function RybotPage() {
     setInput('');
     setLoading(true);
 
-    setTimeout(() => {
-      setMessages(prev => [
-        ...prev,
-        { role: 'assistant', content: "I'm RyBot! API integration coming soon." },
-      ]);
+    try {
+      const response = await fetch('/.netlify/functions/rybot', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: text }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error ?? `Server error ${response.status}`);
+      }
+
+      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Something went wrong.';
+      setMessages(prev => [...prev, { role: 'assistant', content: `Error: ${message}` }]);
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   }
 
   function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
@@ -45,28 +60,53 @@ function RybotPage() {
   }
 
   return (
-    <div className="flex flex-col h-screen bg-indigo-900 text-white">
-      <div className="text-center py-5 text-2xl font-semibold tracking-wide border-b border-indigo-700">
-        Ask RyBot About Me
+    <div className="flex flex-col h-screen bg-slate-950 text-slate-100">
+      <SiteNavBar />
+
+      <div className="bg-slate-950/90 backdrop-blur-sm border-b border-slate-800 px-6 py-4 flex flex-col items-center">
+        <span className="text-cyan-400/70 font-mono text-xs tracking-[0.2em] uppercase mb-1">AI Assistant</span>
+        <h1 className="text-2xl font-bold tracking-tight">Ask RyBot</h1>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
+      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4 pt-6">
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div
               className={`max-w-xl px-4 py-3 rounded-2xl text-sm leading-relaxed ${
-                msg.role === 'user' ? 'bg-blue-600' : 'bg-gray-700'
+                msg.role === 'user'
+                  ? 'bg-cyan-500/15 border border-cyan-500/25 text-slate-100'
+                  : 'bg-slate-900/70 border border-slate-800 text-slate-200'
               }`}
             >
-              {msg.content}
+              {msg.role === 'assistant' ? (
+                <ReactMarkdown
+                  components={{
+                    p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+                    em: ({ children }) => <em className="italic">{children}</em>,
+                    ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1">{children}</ul>,
+                    ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1">{children}</ol>,
+                    li: ({ children }) => <li>{children}</li>,
+                    code: ({ children }) => <code className="bg-slate-800 rounded px-1 font-mono text-xs text-cyan-300">{children}</code>,
+                    pre: ({ children }) => <pre className="bg-slate-800 rounded p-2 overflow-x-auto mb-2 font-mono text-xs">{children}</pre>,
+                    h1: ({ children }) => <h1 className="text-lg font-bold mb-1">{children}</h1>,
+                    h2: ({ children }) => <h2 className="text-base font-bold mb-1">{children}</h2>,
+                    h3: ({ children }) => <h3 className="text-sm font-bold mb-1">{children}</h3>,
+                  }}
+                >
+                  {msg.content}
+                </ReactMarkdown>
+              ) : (
+                msg.content
+              )}
             </div>
           </div>
         ))}
 
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-gray-700 px-4 py-3 rounded-2xl text-sm">
-              <span className="animate-pulse">...</span>
+            <div className="bg-slate-900/70 border border-slate-800 px-4 py-3 rounded-2xl text-sm">
+              <span className="text-cyan-400 animate-pulse">...</span>
             </div>
           </div>
         )}
@@ -74,9 +114,9 @@ function RybotPage() {
         <div ref={bottomRef} />
       </div>
 
-      <div className="border-t border-indigo-700 px-4 py-4 flex gap-3 items-end">
+      <div className="border-t border-slate-800 px-4 py-4 flex gap-3 items-end">
         <textarea
-          className="flex-1 bg-indigo-800 text-white rounded-xl px-4 py-3 text-sm resize-none outline-none placeholder-indigo-400"
+          className="flex-1 bg-slate-900 border border-slate-800 text-slate-100 rounded-xl px-4 py-3 text-sm resize-none outline-none placeholder-slate-500 focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/20 transition-colors"
           rows={1}
           placeholder="Ask something..."
           value={input}
@@ -86,7 +126,7 @@ function RybotPage() {
         <button
           onClick={sendMessage}
           disabled={loading || !input.trim()}
-          className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-5 py-3 rounded-xl text-sm font-medium"
+          className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-500/60 disabled:opacity-30 px-5 py-3 rounded-xl text-sm font-medium transition-all"
         >
           Send
         </button>

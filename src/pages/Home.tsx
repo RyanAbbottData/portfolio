@@ -100,7 +100,7 @@ function Home() {
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in-up-delay-2">
             <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fab fa-github" iconClassName="text-lg" label="GitHub" />
             <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fab fa-linkedin" iconClassName="text-lg" label="LinkedIn" />
-            {/* <LinkButton to="/rybot" icon="fas fa-arrow-right" iconClassName="text-sm" iconPosition="right" variant="primary" label="Ask RyBot" /> */}
+            <LinkButton to="/rybot" icon="fas fa-arrow-right" iconClassName="text-sm" iconPosition="right" variant="primary" label="Ask RyBot" />
           </div>
         </div>
 

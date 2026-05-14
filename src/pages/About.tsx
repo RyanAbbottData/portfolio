@@ -47,7 +47,7 @@ const VALUE_PROPS = [
     bg: 'bg-indigo-400/10',
     border: 'border-indigo-400/20',
     heading: 'Modern AI Architecture',
-    body: 'RAG pipelines, vector stores, and LLM integrations designed to turn your data into a business asset.',
+    body: 'RAG pipelines, knowledge layers, and LLM integrations designed to turn your data into a business asset.',
   },
   {
     icon: 'fa-arrows-rotate',
