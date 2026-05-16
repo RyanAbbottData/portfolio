@@ -63,7 +63,7 @@ function RybotPage() {
     <div className="flex flex-col h-screen bg-slate-950 text-slate-100">
       <SiteNavBar />
 
-      <div className="bg-slate-950/90 backdrop-blur-sm border-b border-slate-800 px-6 py-4 flex flex-col items-center">
+      <div className="bg-slate-950/90 backdrop-blur-sm border-b border-slate-800 px-6 pt-20 pb-4 flex flex-col items-center">
         <span className="text-cyan-400/70 font-mono text-xs tracking-[0.2em] uppercase mb-1">AI Assistant</span>
         <h1 className="text-2xl font-bold tracking-tight">Ask RyBot</h1>
       </div>
