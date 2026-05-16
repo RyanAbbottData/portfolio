@@ -24,8 +24,7 @@ const PROJECTS: Record<ProjectKey, {
     bg: 'bg-cyan-400/10',
     border: 'border-cyan-400/20',
     tags: ['Python', 'Claude API', 'MCP', 'RAG', 'TypeScript'],
-    githubPath: '/rybot',
-    comingSoon: true
+    githubPath: '/rybot'
   },
   mlbetl: {
     label: 'MLB ML',
