@@ -3,7 +3,7 @@ import { LinkButton } from '../utils/links';
 import { zip } from '../utils/arrays';
 import SiteNavBar from '../utils/navbar';
 
-type ProjectKey = 'rybot' | 'mlbetl' | 'nbaetl' | 'weatherpred';
+type ProjectKey = 'mycode' | 'rybot' | 'mlbetl' | 'nbaetl' | 'weatherpred';
 
 const PROJECTS: Record<ProjectKey, {
   label: string;
@@ -16,6 +16,16 @@ const PROJECTS: Record<ProjectKey, {
   githubPath: string;
   comingSoon?: boolean;
 }> = {
+  mycode: {
+    label: 'MyCode',
+    description: "an AI agent tailored to build code your way. MyCode uses reasoning to extract semantic meaning from your code, analyzing your exact preferences.",
+    icon: 'fa-robot',
+    color: 'text-cyan-400',
+    bg: 'bg-cyan-400/10',
+    border: 'border-cyan-400/20',
+    tags: ['Python', 'Claude API', 'OpenAI', 'MCP', 'RAG'],
+    githubPath: '/mycode'
+  },
   rybot: {
     label: 'RyBot',
     description: "An AI-powered chatbot built on the Claude API, connected to an MCP Server. Ask it about my background, projects, or experience, and it answers with full context about who I am and what I've built.",
@@ -24,8 +34,7 @@ const PROJECTS: Record<ProjectKey, {
     bg: 'bg-cyan-400/10',
     border: 'border-cyan-400/20',
     tags: ['Python', 'Claude API', 'MCP', 'RAG', 'TypeScript'],
-    githubPath: '/rybot',
-    comingSoon: true
+    githubPath: '/rybot'
   },
   mlbetl: {
     label: 'MLB ML',

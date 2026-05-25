@@ -8,7 +8,7 @@ type Base = {
   variant?: 'outline' | 'primary';
 };
 
-type ExternalProps = Base & { href: string; to?: never; target?: string; rel?: string };
+type ExternalProps = Base & { href: string; to?: never; target?: string; rel?: string; download?: string | boolean };
 type InternalProps = Base & { to: string; href?: never; target?: never; rel?: never };
 
 type LinkButtonProps = ExternalProps | InternalProps;
@@ -37,7 +37,7 @@ function LinkButton({
   }
 
   return (
-    <a href={(rest as ExternalProps).href} target={(rest as ExternalProps).target} rel={(rest as ExternalProps).rel} className={className}>
+    <a href={(rest as ExternalProps).href} target={(rest as ExternalProps).target} rel={(rest as ExternalProps).rel} download={(rest as ExternalProps).download} className={className}>
       {content}
     </a>
   );

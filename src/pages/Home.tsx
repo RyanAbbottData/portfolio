@@ -42,7 +42,7 @@ const SKILLS = [
   { icon: 'fa-database', color: 'text-violet-400', bg: 'bg-violet-400/10', border: 'border-violet-400/20', name: 'SQL',        desc: 'Data Modeling & Queries'  },
 ];
 
-const SECONDARY_SKILLS = ['PyTorch', 'Scikit-learn', 'PySpark', 'React', 'TypeScript', 'Supabase', 'Git', 'Docker'];
+const SECONDARY_SKILLS = ['PyTorch', 'Scikit-learn', 'PySpark', 'React.js', 'TypeScript', 'Node.js', 'Agile', 'Git', 'CI/CD', 'Docker', 'C#', 'Kotlin'];
 
 const STATS = [
   { value: '5+',                label: 'Years Experience' },
@@ -163,7 +163,7 @@ function Home() {
         <div className="max-w-2xl mx-auto">
           <p className="text-cyan-400/70 font-mono text-xs tracking-[0.2em] uppercase mb-4">Get in touch</p>
           <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">Let's build something great.</h2>
-          <p className="text-slate-400 text-lg mb-10">Open to roles in AI/ML Engineering and Data Engineering.</p>
+          <p className="text-slate-400 text-lg mb-10">Open to roles in AI/ML Engineering, Data Engineering, and Software Engineering.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <LinkButton href="https://github.com/RyanAbbottData" target="_blank" rel="noopener noreferrer" icon="fab fa-github" label="GitHub" />
             <LinkButton href="https://www.linkedin.com/in/ryan-abbott-6ba4b0233" target="_blank" rel="noopener noreferrer" icon="fab fa-linkedin" label="LinkedIn" />
