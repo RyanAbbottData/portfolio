@@ -8,8 +8,8 @@ function SiteNavBar() {
             </Link>
             <ul className="flex items-center gap-8 text-sm list-none m-0 p-0">
                 <li><Link to="/about" className="text-cyan-400">About</Link></li>
-                <li><Link to="/projects" className="text-slate-400 hover:text-cyan-400 transition-colors">Projects</Link></li>
-                {/* <li><span className="text-slate-600 cursor-default">Resume</span></li> */}
+                <li><Link to="/projects" className="text-cyan-400 hover:text-cyan-400 transition-colors">Projects</Link></li>
+                <li><Link to="/resume" className="text-cyan-400">Resume</Link></li>
                 <li>
                 <Link
                     to="/rybot"

@@ -20,11 +20,11 @@ const EXPERIENCE: Record<ExpKey, { label: string; description: string }> = {
   },
   cons: {
     label: 'AI/ML Consulting',
-    description: "Now, I do AI consultation, assisting companies in understanding how to wrangle and construct RAG-based infrastructure around their data.",
+    description: "Now, I do AI consultation, assisting companies in establishing ontologies and constructing RAG-based infrastructure around their data.",
   },
   webd: {
     label: 'Web Development',
-    description: "I am also a freelance web developer, assembling websites for multiple local businesses.",
+    description: "I am also a freelance web developer, building and maintaining websites for multiple local businesses.",
   },
 };
 
