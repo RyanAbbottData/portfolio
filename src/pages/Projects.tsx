@@ -18,7 +18,7 @@ const PROJECTS: Record<ProjectKey, {
 }> = {
   mycode: {
     label: 'MyCode',
-    description: "an AI agent tailored to build code your way. MyCode uses reasoning to extract semantic meaning from your code, analyzing your exact preferences.",
+    description: "An AI agent tailored to build code your way. MyCode uses reasoning to extract semantic meaning from your code, analyzing your exact preferences.",
     icon: 'fa-robot',
     color: 'text-cyan-400',
     bg: 'bg-cyan-400/10',
@@ -70,7 +70,7 @@ const PROJECTS: Record<ProjectKey, {
   },
 };
 
-const PROJ_ORDER: ProjectKey[] = ['rybot', 'mlbetl', 'nbaetl', 'weatherpred'];
+const PROJ_ORDER: ProjectKey[] = ['mycode', 'rybot', 'mlbetl', 'nbaetl', 'weatherpred'];
 
 const ANIM_CLASSES = [
   'animate-fade-in-up',
